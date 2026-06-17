@@ -1,0 +1,7 @@
+{
+  "vitest.enable": true,
+  "vitest.config": "vitest.config.ts",
+  "vitest.rootInclude": [
+    "src/**/*.test.ts"
+  ]
+}

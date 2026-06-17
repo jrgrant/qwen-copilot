@@ -5,10 +5,10 @@
  * for region/workspaceId/baseUrl, and assembles a resolved QwenConfig.
  */
 
-import * as vscode from 'vscode';
-import { QwenConfig, REGION_URLS } from './types';
+import * as vscode from 'vscode'
+import { QwenConfig, REGION_URLS } from './types'
 
-const SECRET_KEY = 'qwenCopilot.apiKey';
+const SECRET_KEY = 'qwenCopilot.apiKey'
 
 /**
  * Resolve the full configuration for API calls.
@@ -17,25 +17,25 @@ const SECRET_KEY = 'qwenCopilot.apiKey';
 export async function resolveConfig(
   secrets: vscode.SecretStorage,
 ): Promise<QwenConfig | null> {
-  const apiKey = await secrets.get(SECRET_KEY);
+  const apiKey = await secrets.get(SECRET_KEY)
   if (!apiKey) {
-    return null;
+    return null
   }
 
-  const config = vscode.workspace.getConfiguration('qwenCopilot');
-  const customBaseUrl = config.get<string>('baseUrl', '');
-  const region = config.get<string>('region', 'ap-southeast-1');
-  const workspaceId = config.get<string>('workspaceId', '');
+  const config = vscode.workspace.getConfiguration('qwenCopilot')
+  const customBaseUrl = config.get<string>('baseUrl', '')
+  const region = config.get<string>('region', 'ap-southeast-1')
+  const workspaceId = config.get<string>('workspaceId', '')
 
-  let baseUrl: string;
+  let baseUrl: string
   if (customBaseUrl) {
-    baseUrl = customBaseUrl;
+    baseUrl = customBaseUrl
   } else {
-    const template = REGION_URLS[region] ?? REGION_URLS['ap-southeast-1'];
-    baseUrl = template.replace('{workspace}', encodeURIComponent(workspaceId));
+    const template = REGION_URLS[region] ?? REGION_URLS['ap-southeast-1']
+    baseUrl = template.replace('{workspace}', encodeURIComponent(workspaceId))
   }
 
-  return { apiKey, baseUrl };
+  return { apiKey, baseUrl }
 }
 
 /**
@@ -45,7 +45,7 @@ export async function resolveConfig(
 export async function promptForApiKey(
   secrets: vscode.SecretStorage,
 ): Promise<string | undefined> {
-  const existing = await secrets.get(SECRET_KEY);
+  const existing = await secrets.get(SECRET_KEY)
   const apiKey = await vscode.window.showInputBox({
     title: 'Alibaba DashScope API Key',
     prompt: 'Enter your DashScope API key from the Model Studio console',
@@ -55,17 +55,17 @@ export async function promptForApiKey(
     ignoreFocusOut: true,
     validateInput: (value) => {
       if (!value.trim()) {
-        return 'API key is required';
+        return 'API key is required'
       }
-      return undefined;
+      return undefined
     },
-  });
+  })
 
   if (apiKey) {
-    await secrets.store(SECRET_KEY, apiKey.trim());
+    await secrets.store(SECRET_KEY, apiKey.trim())
     vscode.window.showInformationMessage(
       'Qwen Copilot: API key saved. Select a Qwen model in the Copilot model picker.',
-    );
+    )
   }
-  return apiKey;
+  return apiKey
 }
