@@ -1,0 +1,89 @@
+{
+  "name": "qwen-copilot",
+  "displayName": "Qwen Copilot - Alibaba BYOK",
+  "description": "Use Alibaba Qwen models as BYOK alternatives in GitHub Copilot",
+  "version": "0.1.0",
+  "publisher": "jrgrant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jrgrant/qwen-copilot"
+  },
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "categories": [
+    "Machine Learning",
+    "Chat"
+  ],
+  "keywords": [
+    "copilot",
+    "qwen",
+    "alibaba",
+    "byok",
+    "bring your own key",
+    "language model",
+    "llm",
+    "ai"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languageModelChatProviders": [
+      {
+        "vendor": "alibaba",
+        "displayName": "Alibaba Qwen"
+      }
+    ],
+    "commands": [
+      {
+        "command": "qwenCopilot.setApiKey",
+        "title": "Qwen: Set API Key"
+      }
+    ],
+    "configuration": {
+      "title": "Qwen Copilot",
+      "properties": {
+        "qwenCopilot.region": {
+          "type": "string",
+          "default": "ap-southeast-1",
+          "enum": [
+            "ap-southeast-1",
+            "us-east-1",
+            "cn-hongkong",
+            "eu-central-1"
+          ],
+          "enumDescriptions": [
+            "Singapore",
+            "US (Virginia)",
+            "China (Hong Kong)",
+            "Germany (Frankfurt)"
+          ],
+          "description": "Alibaba Cloud Model Studio region"
+        },
+        "qwenCopilot.workspaceId": {
+          "type": "string",
+          "default": "",
+          "description": "Your DashScope workspace ID (from Model Studio console)"
+        },
+        "qwenCopilot.baseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "Custom base URL override (leave empty to use region default)"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.3",
+    "@types/vscode": "^1.95.0",
+    "@vscode/vsce": "^3.0.0",
+    "typescript": "^5.7.0"
+  }
+}

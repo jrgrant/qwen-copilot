@@ -1,0 +1,46 @@
+name: AI Literacy Harness
+
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 8 * * 1'  # Weekly Monday 8am UTC
+
+jobs:
+  harness-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Zero runtime deps check
+        run: |
+          if node -e "const p = require('./package.json'); process.exit(p.dependencies ? 1 : 0)"; then
+            echo "✓ Zero runtime dependencies"
+          else
+            echo "✗ package.json has runtime dependencies"
+            exit 1
+          fi
+
+      - name: TypeScript compile
+        run: npm run compile
+
+      - name: Verify harness files exist
+        run: |
+          for f in CLAUDE.md AGENTS.md MODEL_ROUTING.md REFLECTION_LOG.md .claude/HARNESS.md; do
+            if [ -f "$f" ]; then
+              echo "✓ $f exists"
+            else
+              echo "✗ $f is missing"
+              exit 1
+            fi
+          done
+
+      - name: Run generic AI literacy check
+        run: bash scripts/ai-literacy-check.sh
