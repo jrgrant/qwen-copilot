@@ -2,3 +2,6 @@ out/
 node_modules/
 *.vsix
 .vscode-test/
+.crap/Default Workspace-apiKey-369396.csv
+.gitignore
+**/.DS_Store
