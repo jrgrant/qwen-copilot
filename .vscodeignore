@@ -2,9 +2,11 @@
 .git/**
 node_modules/**
 src/**
+vitest.config.ts
 tsconfig.json
 docs/**
 .claude/**
 .github/**
 scripts/**
 **/*.map
+out/**/*.test.*
