@@ -5,7 +5,7 @@
  * Alibaba DashScope OpenAI-compatible Chat Completions API.
  */
 
-import * as vscode from 'vscode';
+import * as vscode from 'vscode'
 
 // ── DashScope API types ────────────────────────────────────────────────
 
@@ -69,7 +69,7 @@ export const MODEL_MAP: Record<string, string> = {
   'qwen-max': 'qwen3.7-max',
   'qwen-plus': 'qwen3.7-plus',
   'qwen-flash': 'qwen3.6-flash',
-};
+}
 
 export const QWEN_MODELS: vscode.LanguageModelChatInformation[] = [
   {
@@ -102,11 +102,11 @@ export const QWEN_MODELS: vscode.LanguageModelChatInformation[] = [
     detail: 'Fast and cost-effective, 1M context',
     capabilities: { toolCalling: 128 },
   },
-];
+]
 
 export const REGION_URLS: Record<string, string> = {
   'ap-southeast-1': 'https://{workspace}.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1',
   'us-east-1': 'https://{workspace}.us-east-1.maas.aliyuncs.com/compatible-mode/v1',
   'cn-hongkong': 'https://{workspace}.cn-hongkong.maas.aliyuncs.com/compatible-mode/v1',
   'eu-central-1': 'https://{workspace}.eu-central-1.maas.aliyuncs.com/compatible-mode/v1',
-};
+}
