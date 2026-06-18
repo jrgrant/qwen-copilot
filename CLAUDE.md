@@ -10,6 +10,8 @@
 3. **TDD**: tests written before implementation. Red → Green → Refactor.
 4. **Code review**: all implementation reviewed through CUPID lens before merge.
 5. **Never commit directly to main** — always feature branches.
+6. **GitHub Flow**: feature branches off `main`, opened as PRs, merged via squash
+   merge, branch deleted after merge.
 
 ## Build and Test
 
@@ -41,6 +43,19 @@ Stream via `progress.report()` as chunks arrive. Never buffer the full response.
 ### C4: Silent mode
 Return `[]` from `provideLanguageModelChatInformation` when `silent: true` and no key.
 **Rationale**: Silent mode is background discovery — showing UI is disruptive.
+
+### C5: GitHub Flow SCC management
+
+- **Rule**: All changes must follow the GitHub Flow branching model:
+  - Branch names use `kebab-case` prefixed by type: `feat/`, `fix/`, `chore/`, `docs/`, `refactor/`
+  - Every PR must reference an issue or spec in its description
+  - Commits use conventional commit format: `type(scope): description`
+  - No direct commits to `main` — all changes land via squash-merged PRs
+  - The source branch is deleted immediately after the PR is merged
+  - CI must pass before merge (compile + lint + test + package)
+- **Enforcement**: agent
+- **Tool**: harness-enforcer (agent review)
+- **Scope**: pr
 
 ## Learnings
 
