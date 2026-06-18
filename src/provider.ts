@@ -253,12 +253,9 @@ implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation>
           part instanceof vscode.LanguageModelDataPart &&
           msg.role === vscode.LanguageModelChatMessageRole.User
         ) {
-          const data = part as unknown as { data: Uint8Array; mimeType: string }
-          const base64 = Buffer.from(data.data).toString('base64')
-          parts.push({
-            kind: 'image',
-            imageUrl: `data:${data.mimeType};base64,${base64}`,
-          })
+          // Qwen Max/Plus/Flash are text-only models (imageInput: false).
+          // Skip images silently — the API will reject them with a 400.
+          continue
         }
       }
       adapted.push({
