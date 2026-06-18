@@ -13,11 +13,30 @@ const SECRET_KEY = 'qwenCopilot.apiKey'
 /**
  * Resolve the full configuration for API calls.
  * Returns null if no API key is configured.
+ *
+ * Checks SecretStorage first (preferred), then falls back to the
+ * deprecated `qwenCopilot.apiKey` setting. If a key is found in
+ * settings, it is migrated to SecretStorage and the setting is
+ * cleared.
  */
 export async function resolveConfig(
   secrets: vscode.SecretStorage,
 ): Promise<QwenConfig | null> {
-  const apiKey = await secrets.get(SECRET_KEY)
+  let apiKey = await secrets.get(SECRET_KEY)
+
+  // Fallback: check the deprecated settings field
+  if (!apiKey) {
+    const config = vscode.workspace.getConfiguration('qwenCopilot')
+    const settingsKey = config.inspect<string>('apiKey')
+    const rawKey = settingsKey?.globalValue ?? settingsKey?.workspaceValue ?? ''
+    if (rawKey) {
+      apiKey = rawKey
+      // Migrate to SecretStorage and clear the plain-text setting
+      await secrets.store(SECRET_KEY, apiKey.trim())
+      await config.update('apiKey', undefined, vscode.ConfigurationTarget.Global)
+    }
+  }
+
   if (!apiKey) {
     return null
   }

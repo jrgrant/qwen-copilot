@@ -2,7 +2,7 @@
   "name": "qwen-copilot",
   "displayName": "Qwen Copilot - Alibaba BYOK",
   "description": "Use Alibaba Qwen models as BYOK alternatives in GitHub Copilot",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "publisher": "jrgrant",
   "license": "MIT",
   "repository": {
@@ -39,14 +39,28 @@
       {
         "command": "qwenCopilot.setApiKey",
         "title": "Qwen: Set API Key"
+      },
+      {
+        "command": "qwenCopilot.openSettings",
+        "title": "Qwen: Open Settings"
       }
     ],
     "configuration": {
       "title": "Qwen Copilot",
+      "order": 0,
       "properties": {
+        "qwenCopilot.workspaceId": {
+          "type": "string",
+          "default": "",
+          "order": 0,
+          "scope": "machine",
+          "markdownDescription": "Your **DashScope Workspace ID** from the [Model Studio console](https://bailian.console.aliyun.com/).\n\nNavigate to **Workspace Details** to find this value.\n\n_Required for all regions._"
+        },
         "qwenCopilot.region": {
           "type": "string",
           "default": "ap-southeast-1",
+          "order": 1,
+          "scope": "machine",
           "enum": [
             "ap-southeast-1",
             "us-east-1",
@@ -54,22 +68,29 @@
             "eu-central-1"
           ],
           "enumDescriptions": [
-            "Singapore",
+            "Singapore — default region",
             "US (Virginia)",
             "China (Hong Kong)",
             "Germany (Frankfurt)"
           ],
-          "description": "Alibaba Cloud Model Studio region"
-        },
-        "qwenCopilot.workspaceId": {
-          "type": "string",
-          "default": "",
-          "description": "Your DashScope workspace ID (from Model Studio console)"
+          "markdownDescription": "**Alibaba Cloud Model Studio region** for API requests.\n\nYour workspace must exist in this region."
         },
         "qwenCopilot.baseUrl": {
           "type": "string",
           "default": "",
-          "description": "Custom base URL override (leave empty to use region default)"
+          "order": 2,
+          "scope": "machine",
+          "pattern": "^$|^https?://",
+          "patternErrorMessage": "Must be a valid URL (starting with http:// or https://)",
+          "markdownDescription": "**Custom base URL override.**\n\nLeave empty to use the region default. Only set this if you're using a proxy, private endpoint, or compatible API.\n\nExample: `https://my-proxy.example.com/v1`"
+        },
+        "qwenCopilot.apiKey": {
+          "type": "string",
+          "default": "",
+          "order": 3,
+          "scope": "application",
+          "editPresentation": "singleline",
+          "markdownDescription": "**Deprecated — use the command instead.**\n\n⚠️ Settings are stored as **plain text** and synced via Settings Sync. For security, set your API key via the `Qwen: Set API Key` command instead:\n\n1. Open the Command Palette (`Cmd+Shift+P`)\n2. Run **Qwen: Set API Key**\n3. Your key will be stored securely in VS Code's Secret Storage\n\n_This setting exists only as a fallback; the command is strongly recommended._"
         }
       }
     }

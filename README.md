@@ -29,10 +29,14 @@ All models support tool calling (function calling).
 
 ### 3. Configure the Extension
 
-Open VS Code settings (`Cmd+,`) and set:
+Run **"Qwen: Open Settings"** (`Cmd+Shift+P`) to open the extension settings,
+or go to **Settings → Extensions → Qwen Copilot** and set:
 
-- **`qwenCopilot.workspaceId`** — Your workspace ID
-- **`qwenCopilot.region`** — Your region (default: Singapore)
+- **`Qwen Copilot › Workspace Id`** — Your workspace ID
+- **`Qwen Copilot › Region`** — Your region (default: Singapore)
+
+> 💡 All settings are discoverable via the Settings GUI with descriptions,
+> validation, and dropdown options.
 
 Then:
 
@@ -42,17 +46,22 @@ Then:
 4. Enter your API key when prompted
 5. Choose a Qwen model (Max, Plus, or Flash)
 
-You can also run **"Qwen: Set API Key"** (`Cmd+Shift+P`).
+You can also run **"Qwen: Set API Key"** (`Cmd+Shift+P`) or **"Qwen: Open
+Settings"** (`Cmd+Shift+P`) at any time.
 
-## Configuration
+## Settings GUI
 
-| Setting | Default | Description |
-|---|---|---|
-| `qwenCopilot.region` | `ap-southeast-1` | Alibaba Cloud region |
-| `qwenCopilot.workspaceId` | (empty) | Your DashScope workspace ID |
-| `qwenCopilot.baseUrl` | (empty) | Custom base URL (overrides region) |
+All extension settings are available in the **Settings UI** under
+**Extensions → Qwen Copilot**:
 
-Your API key is stored securely in VS Code's Secret Storage.
+| Setting | GUI Label | Default | Description |
+|---|---|---|---|
+| `qwenCopilot.workspaceId` | Workspace Id | _(empty)_ | Your DashScope workspace ID |
+| `qwenCopilot.region` | Region | `ap-southeast-1` | Alibaba Cloud region (dropdown) |
+| `qwenCopilot.baseUrl` | Base Url | _(empty)_ | Custom base URL (with validation) |
+
+Your API key is stored securely in VS Code's Secret Storage — use the
+**"Qwen: Set API Key"** command to set it.
 
 ## Requirements
 

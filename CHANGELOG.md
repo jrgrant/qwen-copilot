@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.0 (2026-06-18)
+
+- Settings GUI integration: rich markdown descriptions, ordering, validation, and scoping
+- New "Qwen: Open Settings" command for direct access to extension configs
+- API key migration: auto-import from deprecated settings field into SecretStorage
+- README updated for Settings GUI workflow
+
 ## 0.2.0 (2026-06-17)
 
 - Test infrastructure: vitest installed and configured

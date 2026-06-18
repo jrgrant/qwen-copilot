@@ -34,6 +34,12 @@ export function activate(context: vscode.ExtensionContext): void {
         provider.notifyChange()
       }
     }),
+    vscode.commands.registerCommand('qwenCopilot.openSettings', () => {
+      vscode.commands.executeCommand(
+        'workbench.action.openSettings',
+        '@ext:jrgrant.qwen-copilot',
+      )
+    }),
   )
 }
 
