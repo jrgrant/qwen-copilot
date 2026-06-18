@@ -63,7 +63,106 @@ implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation>
       return []
     }
 
+    // Try dynamic model discovery from the API
+    try {
+      const models = await this.fetchModels(config)
+      if (models.length > 0) {
+        return models
+      }
+    } catch {
+      // Fall back to static list
+    }
+
     return QWEN_MODELS
+  }
+
+  /**
+   * Fetch available models from the DashScope /models endpoint.
+   * Returns an empty array if the endpoint fails or returns no models.
+   */
+  private async fetchModels(
+    config: { apiKey: string; baseUrl: string },
+  ): Promise<vscode.LanguageModelChatInformation[]> {
+    const response = await fetch(`${config.baseUrl}/models`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${config.apiKey}`,
+      },
+    })
+
+    if (!response.ok) {
+      return []
+    }
+
+    const data = await response.json() as {
+      data?: Array<{ id: string; object?: string }>
+    }
+
+    if (!data.data || !Array.isArray(data.data)) {
+      return []
+    }
+
+    return data.data
+      .map((m) => this.mapApiModel(m.id))
+      .filter((m): m is vscode.LanguageModelChatInformation => m !== null)
+  }
+
+  /**
+   * Map an API model ID to LanguageModelChatInformation.
+   * Returns null for unsupported models.
+   */
+  private mapApiModel(
+    modelId: string,
+  ): vscode.LanguageModelChatInformation | null {
+    // Check if this is a known model alias (qwen-max, qwen-plus, qwen-flash)
+    if (modelId in MODEL_MAP) {
+      const known = QWEN_MODELS.find((m) => m.id === modelId)
+      return known ?? null
+    }
+
+    // Check if this is a known DashScope model name (qwen3.7-max, etc)
+    const reverseMap: Record<string, string> = {
+      'qwen3.7-max': 'qwen-max',
+      'qwen3.7-plus': 'qwen-plus',
+      'qwen3.6-flash': 'qwen-flash',
+    }
+
+    if (modelId in reverseMap) {
+      const alias = reverseMap[modelId]
+      const known = QWEN_MODELS.find((m) => m.id === alias)
+      return known ?? null
+    }
+
+    // Check if it's a Qwen model we don't have explicit config for
+    if (modelId.startsWith('qwen')) {
+      // Create a generic entry for unknown Qwen models
+      return {
+        id: modelId,
+        name: this.formatModelName(modelId),
+        family: 'qwen',
+        version: 'unknown',
+        maxInputTokens: 128000, // Conservative default
+        maxOutputTokens: 8192,
+        detail: 'Dynamic model from API',
+        capabilities: {
+          toolCalling: true,
+          imageInput: false,
+        },
+      }
+    }
+
+    // Not a Qwen model — skip it
+    return null
+  }
+
+  /**
+   * Format a model ID into a human-readable name.
+   */
+  private formatModelName(modelId: string): string {
+    return modelId
+      .split(/[-_]/)
+      .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+      .join(' ')
   }
 
   // ── Chat response (streaming) ───────────────────────────────────────
