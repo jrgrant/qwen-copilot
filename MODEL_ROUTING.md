@@ -1,4 +1,4 @@
-# MODEL_ROUTING.md — Qwen Copilot
+# MODEL_ROUTING.md — Alibaba Copilot
 
 Model tier selection for dispatching agents.
 

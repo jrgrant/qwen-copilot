@@ -1,4 +1,4 @@
-# Qwen Copilot — Alibaba BYOK for GitHub Copilot
+# Alibaba Copilot — Alibaba Models for GitHub Copilot
 
 Use **Alibaba Qwen models** as BYOK (Bring Your Own Key) alternatives in GitHub
 Copilot Chat, Copilot Edits, and any VS Code extension that uses the language
@@ -30,10 +30,12 @@ All models support tool calling (function calling).
 ### 3. Configure the Extension
 
 Run **"Qwen: Open Settings"** (`Cmd+Shift+P`) to open the extension settings,
-or go to **Settings → Extensions → Qwen Copilot** and set:
+or go to **Settings → Extensions → Alibaba Copilot** and set:
 
 - **`Qwen Copilot › Workspace Id`** — Your workspace ID
 - **`Qwen Copilot › Region`** — Your region (default: Singapore)
+
+> Note: The setting keys still use the `qwenCopilot` prefix for backward compatibility.
 
 > 💡 All settings are discoverable via the Settings GUI with descriptions,
 > validation, and dropdown options.
@@ -52,7 +54,7 @@ Settings"** (`Cmd+Shift+P`) at any time.
 ## Settings GUI
 
 All extension settings are available in the **Settings UI** under
-**Extensions → Qwen Copilot**:
+**Extensions → Alibaba Copilot**:
 
 | Setting | GUI Label | Default | Description |
 |---|---|---|---|
