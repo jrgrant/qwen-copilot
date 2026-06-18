@@ -43,6 +43,10 @@
       {
         "command": "qwenCopilot.openSettings",
         "title": "Alibaba: Open Settings"
+      },
+      {
+        "command": "qwenCopilot.refreshModels",
+        "title": "Alibaba: Refresh Models"
       }
     ],
     "configuration": {

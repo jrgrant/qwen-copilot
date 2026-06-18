@@ -40,6 +40,12 @@ export function activate(context: vscode.ExtensionContext): void {
         '@ext:jrgrant.qwen-copilot',
       )
     }),
+    vscode.commands.registerCommand('qwenCopilot.refreshModels', () => {
+      provider.notifyChange()
+      vscode.window.showInformationMessage(
+        'Alibaba Copilot: Model list refreshed.',
+      )
+    }),
   )
 }
 
