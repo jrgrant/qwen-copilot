@@ -4,6 +4,7 @@
 
 - Settings GUI integration: rich markdown descriptions, ordering, validation, and scoping
 - New "Alibaba: Open Settings" command for direct access to extension configs
+- New "Alibaba: Refresh Models" command to re-discover the model list on demand
 - API key migration: auto-import from deprecated settings field into SecretStorage
 - README updated for Settings GUI workflow
 - Fix: declare `imageInput: false` on Qwen models to prevent 400 errors when
