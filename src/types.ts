@@ -80,7 +80,7 @@ export const QWEN_MODELS: vscode.LanguageModelChatInformation[] = [
     maxInputTokens: 1_000_000,
     maxOutputTokens: 64_000,
     detail: 'Strongest reasoning, 1M context',
-    capabilities: { toolCalling: 128 },
+    capabilities: { toolCalling: 128, imageInput: false },
   },
   {
     id: 'qwen-plus',
@@ -90,7 +90,7 @@ export const QWEN_MODELS: vscode.LanguageModelChatInformation[] = [
     maxInputTokens: 1_000_000,
     maxOutputTokens: 64_000,
     detail: 'Balanced performance and cost, 1M context',
-    capabilities: { toolCalling: 128 },
+    capabilities: { toolCalling: 128, imageInput: false },
   },
   {
     id: 'qwen-flash',
@@ -100,7 +100,7 @@ export const QWEN_MODELS: vscode.LanguageModelChatInformation[] = [
     maxInputTokens: 1_000_000,
     maxOutputTokens: 64_000,
     detail: 'Fast and cost-effective, 1M context',
-    capabilities: { toolCalling: 128 },
+    capabilities: { toolCalling: 128, imageInput: false },
   },
 ]
 

@@ -6,6 +6,8 @@
 - New "Alibaba: Open Settings" command for direct access to extension configs
 - API key migration: auto-import from deprecated settings field into SecretStorage
 - README updated for Settings GUI workflow
+- Fix: declare `imageInput: false` on Qwen models to prevent 400 errors when
+  Copilot sends images to text-only models
 
 ## 0.2.0 (2026-06-17)
 
