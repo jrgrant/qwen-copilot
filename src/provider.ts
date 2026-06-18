@@ -135,7 +135,6 @@ implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation>
 
     // Check if it's a Qwen model we don't have explicit config for
     if (modelId.startsWith('qwen')) {
-      // Create a generic entry for unknown Qwen models
       return {
         id: modelId,
         name: this.formatModelName(modelId),
@@ -151,7 +150,39 @@ implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation>
       }
     }
 
-    // Not a Qwen model — skip it
+    // Third-party coding models available on DashScope
+    const thirdPartyModels: Record<string, { family: string; detail: string }> = {
+      'deepseek-v4-pro': { family: 'deepseek', detail: 'DeepSeek V4 Pro - Advanced reasoning' },
+      'deepseek-v4-flash': { family: 'deepseek', detail: 'DeepSeek V4 Flash - Fast and efficient' },
+      'deepseek-v3': { family: 'deepseek', detail: 'DeepSeek V3 - Powerful general model' },
+      'deepseek-r1': { family: 'deepseek', detail: 'DeepSeek R1 - Reasoning specialist' },
+      'kimi-k2.7-code': { family: 'kimi', detail: 'Kimi K2.7 Code - Coding specialist' },
+      'kimi-k2': { family: 'kimi', detail: 'Kimi K2 - Advanced reasoning' },
+      'minimax-m2.5': { family: 'minimax', detail: 'MiniMax M2.5 - High performance' },
+      'minimax-m2': { family: 'minimax', detail: 'MiniMax M2 - Balanced performance' },
+      'glm-5.2': { family: 'glm', detail: 'GLM 5.2 - Zhipu AI model' },
+      'glm-5': { family: 'glm', detail: 'GLM 5 - Zhipu AI model' },
+      'glm-4': { family: 'glm', detail: 'GLM 4 - Zhipu AI model' },
+    }
+
+    if (modelId in thirdPartyModels) {
+      const info = thirdPartyModels[modelId]
+      return {
+        id: modelId,
+        name: this.formatModelName(modelId),
+        family: info.family,
+        version: 'unknown',
+        maxInputTokens: 128000,
+        maxOutputTokens: 8192,
+        detail: info.detail,
+        capabilities: {
+          toolCalling: true,
+          imageInput: false,
+        },
+      }
+    }
+
+    // Not a supported model — skip it
     return null
   }
 
