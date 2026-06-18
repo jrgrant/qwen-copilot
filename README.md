@@ -29,7 +29,7 @@ All models support tool calling (function calling).
 
 ### 3. Configure the Extension
 
-Run **"Qwen: Open Settings"** (`Cmd+Shift+P`) to open the extension settings,
+Run **"Alibaba: Open Settings"** (`Cmd+Shift+P`) to open the extension settings,
 or go to **Settings → Extensions → Alibaba Copilot** and set:
 
 - **`Qwen Copilot › Workspace Id`** — Your workspace ID
@@ -48,7 +48,7 @@ Then:
 4. Enter your API key when prompted
 5. Choose a Qwen model (Max, Plus, or Flash)
 
-You can also run **"Qwen: Set API Key"** (`Cmd+Shift+P`) or **"Qwen: Open
+You can also run **"Alibaba: Set API Key"** (`Cmd+Shift+P`) or **"Alibaba: Open
 Settings"** (`Cmd+Shift+P`) at any time.
 
 ## Settings GUI
@@ -63,7 +63,7 @@ All extension settings are available in the **Settings UI** under
 | `qwenCopilot.baseUrl` | Base Url | _(empty)_ | Custom base URL (with validation) |
 
 Your API key is stored securely in VS Code's Secret Storage — use the
-**"Qwen: Set API Key"** command to set it.
+**"Alibaba: Set API Key"** command to set it.
 
 ## Requirements
 
@@ -75,3 +75,24 @@ Your API key is stored securely in VS Code's Secret Storage — use the
 
 All requests go directly from your machine to Alibaba Cloud's DashScope
 API. No data passes through any third-party servers.
+
+## Development
+
+### Local Install
+
+Build from source and install into VS Code in one command:
+
+```bash
+npm run install-local          # Full: deps → compile → test → lint → package → install
+npm run install-local -- --quick  # Skip tests and lint for faster iteration
+```
+
+Or run the script directly:
+
+```bash
+./scripts/install-local.sh --quick
+./scripts/install-local.sh --skip-tests
+```
+
+After installing, reload VS Code (`Cmd+Shift+P` → **Developer: Reload Window**)
+then run **Alibaba: Refresh Models** to pick up the latest model list.

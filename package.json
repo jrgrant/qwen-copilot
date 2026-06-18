@@ -106,7 +106,8 @@
     "package": "vsce package",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "install-local": "bash scripts/install-local.sh"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

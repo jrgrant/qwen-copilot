@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.1 (2026-06-18)
+
+- Local install script (`scripts/install-local.sh`): build, package, and install
+  into VS Code in one command. Supports `--quick`, `--skip-tests`, `--skip-lint`
+  flags for faster iteration.
+- New `npm run install-local` script in `package.json`.
+- README: fixed remaining stale "Qwen:" command references to "Alibaba:",
+  added Development section with local install usage.
+
 ## 0.3.0 (2026-06-18)
 
 - Settings GUI integration: rich markdown descriptions, ordering, validation, and scoping
