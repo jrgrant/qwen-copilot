@@ -1,5 +1,5 @@
 ---
-task: "Qwen Copilot — Pre-ship Quality Gates & Infrastructure"
+task: "Alibaba Copilot — Pre-ship Quality Gates & Infrastructure"
 task_slug: ship-quality-gates
 date: 2026-06-17
 carpaccio_model: qwen-plus
@@ -88,7 +88,7 @@ slices:
     merged_into: null
 ---
 
-# Slicing Record — Qwen Copilot Pre-Ship Quality Gates
+# Slicing Record — Alibaba Copilot Pre-Ship Quality Gates
 
 **Task slug:** `ship-quality-gates`
 
@@ -121,7 +121,7 @@ slices:
 
 ### Context
 
-The Qwen Copilot extension has no test framework. The SSE parser (`src/sse-parser.ts`) handles streaming I/O at the extension boundary and has a critical edge case: partial lines across chunk boundaries. Without tests, regressions in stream parsing are undetectable until runtime.
+The Alibaba Copilot extension has no test framework. The SSE parser (`src/sse-parser.ts`) handles streaming I/O at the extension boundary and has a critical edge case: partial lines across chunk boundaries. Without tests, regressions in stream parsing are undetectable until runtime.
 
 ### Decision content
 

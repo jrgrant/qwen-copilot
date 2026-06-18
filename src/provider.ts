@@ -79,7 +79,7 @@ implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation>
     if (!config) {
       progress.report(
         new vscode.LanguageModelTextPart(
-          'Qwen Copilot: No API key configured. Run "Qwen: Set API Key" to configure.',
+          'Alibaba Copilot: No API key configured. Run "Alibaba: Set API Key" to configure.',
         ),
       )
       return
@@ -109,9 +109,9 @@ implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation>
         let message = `Qwen API error (${response.status}): ${errorText}`
         if (response.status === 401) {
           message =
-            'Qwen Copilot: Invalid API key. Run "Qwen: Set API Key" to update it.'
+            'Alibaba Copilot: Invalid API key. Run "Alibaba: Set API Key" to update it.'
         } else if (response.status === 429) {
-          message = 'Qwen Copilot: Rate limit exceeded. Please wait and try again.'
+          message = 'Alibaba Copilot: Rate limit exceeded. Please wait and try again.'
         }
         progress.report(new vscode.LanguageModelTextPart(message))
         return
@@ -120,7 +120,7 @@ implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation>
       const reader = response.body?.getReader()
       if (!reader) {
         progress.report(
-          new vscode.LanguageModelTextPart('Qwen Copilot: Empty response body.'),
+          new vscode.LanguageModelTextPart('Alibaba Copilot: Empty response body.'),
         )
         return
       }
@@ -163,7 +163,7 @@ implements vscode.LanguageModelChatProvider<vscode.LanguageModelChatInformation>
       }
       progress.report(
         new vscode.LanguageModelTextPart(
-          `Qwen Copilot: ${err instanceof Error ? err.message : String(err)}`,
+          `Alibaba Copilot: ${err instanceof Error ? err.message : String(err)}`,
         ),
       )
     } finally {

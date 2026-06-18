@@ -1,6 +1,6 @@
 {
   "name": "qwen-copilot",
-  "displayName": "Qwen Copilot - Alibaba BYOK",
+  "displayName": "Alibaba Copilot - Alibaba Models" ,
   "description": "Use Alibaba Qwen models as BYOK alternatives in GitHub Copilot",
   "version": "0.3.0",
   "publisher": "jrgrant",
@@ -38,15 +38,15 @@
     "commands": [
       {
         "command": "qwenCopilot.setApiKey",
-        "title": "Qwen: Set API Key"
+        "title": "Alibaba: Set API Key"
       },
       {
         "command": "qwenCopilot.openSettings",
-        "title": "Qwen: Open Settings"
+        "title": "Alibaba: Open Settings"
       }
     ],
     "configuration": {
-      "title": "Qwen Copilot",
+      "title": "Alibaba Copilot",
       "order": 0,
       "properties": {
         "qwenCopilot.workspaceId": {

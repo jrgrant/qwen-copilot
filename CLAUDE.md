@@ -1,6 +1,6 @@
-# CLAUDE.md — Qwen Copilot
+# CLAUDE.md — Alibaba Copilot
 
-> Harness document for the Qwen Copilot VS Code extension.
+> Harness document for the Alibaba Copilot VS Code extension.
 > Read before any code change. AGENTS.md is read second.
 
 ## Workflow

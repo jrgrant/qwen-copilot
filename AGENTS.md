@@ -1,4 +1,4 @@
-# AGENTS.md — Qwen Copilot
+# AGENTS.md — Alibaba Copilot
 
 Compound learning memory across sessions.
 

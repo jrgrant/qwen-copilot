@@ -20,7 +20,7 @@ Provide Alibaba-hosted Qwen models as BYOK alternatives in GitHub Copilot (VS Co
 └────────┼────────────────────────────┘
          │ registerLanguageModelChatProvider('alibaba', provider)
 ┌────────▼────────────────────────────┐
-│     Qwen Copilot Extension           │
+│     Alibaba Copilot Extension         │
 │  ┌────────────────────────────────┐ │
 │  │  QwenChatModelProvider         │ │
 │  │  implements:                   │ │

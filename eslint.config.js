@@ -1,4 +1,4 @@
-// ESLint flat config for Qwen Copilot
+// ESLint flat config for Alibaba Copilot
 // TypeScript strict rules, project conventions enforcement
 
 import eslint from '@eslint/js';

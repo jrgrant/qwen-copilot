@@ -1,5 +1,5 @@
 /**
- * Types for the Qwen Copilot extension.
+ * Types for the Alibaba Copilot extension.
  *
  * Bridges VS Code's LanguageModelChatProvider API with the
  * Alibaba DashScope OpenAI-compatible Chat Completions API.

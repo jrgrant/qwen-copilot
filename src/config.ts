@@ -1,5 +1,5 @@
 /**
- * Configuration management for Qwen Copilot.
+ * Configuration management for Alibaba Copilot.
  *
  * Handles secure API key storage via SecretStorage, workspace settings
  * for region/workspaceId/baseUrl, and assembles a resolved QwenConfig.
@@ -83,7 +83,7 @@ export async function promptForApiKey(
   if (apiKey) {
     await secrets.store(SECRET_KEY, apiKey.trim())
     vscode.window.showInformationMessage(
-      'Qwen Copilot: API key saved. Select a Qwen model in the Copilot model picker.',
+      'Alibaba Copilot: API key saved. Select a Qwen model in the Copilot model picker.',
     )
   }
   return apiKey

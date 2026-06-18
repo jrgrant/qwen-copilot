@@ -1,4 +1,4 @@
-# .claude/HARNESS.md — Qwen Copilot
+# .claude/HARNESS.md — Alibaba Copilot
 
 Harness configuration for AI-assisted development governance.
 

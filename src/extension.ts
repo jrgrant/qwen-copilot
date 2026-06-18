@@ -1,5 +1,5 @@
 /**
- * Entry point for the Qwen Copilot VS Code extension.
+ * Entry point for the Alibaba Copilot VS Code extension.
  *
  * Registers the QwenChatModelProvider so Qwen models appear in
  * the Copilot model picker. Also registers the "Set API Key" command.
